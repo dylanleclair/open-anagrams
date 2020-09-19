@@ -8,12 +8,13 @@ namespace Anagrams
         {
             Console.WriteLine("Hello World!");
 
-            var tree = new WordTree("words.txt");
+            var tree = new WordTree("word-lists/" + "words.txt");
 
             while (true)
             {
                 Console.Write("\n");
-                string input = Console.ReadLine();
+                string input = Console.ReadLine().ToLower();
+                input = input.Trim();
                 Console.WriteLine(tree.FindWord(input));
 
             }

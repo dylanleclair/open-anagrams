@@ -20,6 +20,8 @@ namespace Anagrams
             words = new List<string>(w);
             words.Sort();
 
+            Console.WriteLine("Number of words: " + words.Count);
+
             EvilMasterMind();
 
         }
@@ -56,12 +58,8 @@ namespace Anagrams
 
             for (int i = 0; i<word.Length; i++)
             {
-                Console.WriteLine(n.Value + " " +n.Accepting);
                 n = n.Parent;
             }
-
-
-            
 
         }
 
