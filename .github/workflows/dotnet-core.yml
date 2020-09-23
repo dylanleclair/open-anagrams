@@ -22,12 +22,13 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Install dependencies
-      run: dotnet restore
+      run: | 
+        cd Anagrams
+        dotnet restore
     - name: Build
       run: |
-        cd Anagrams
         dotnet build --configuration Release --no-restore
     - name: Test
       run: | 
-        cd Anagrams
         dotnet test --no-restore --verbosity normal
+        
