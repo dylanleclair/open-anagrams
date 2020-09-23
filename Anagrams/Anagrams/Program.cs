@@ -30,7 +30,7 @@ namespace Anagrams
 
             Console.WriteLine("\nGenerating word tree...\n");
             
-            var tree = new FastWordTree(lists[selectedIndex -1]);
+            IWordTree tree = new FastWordTree(lists[selectedIndex -1]);
 
             while (true)
             {
