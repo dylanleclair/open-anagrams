@@ -27,8 +27,10 @@ jobs:
         dotnet restore
     - name: Build
       run: |
+        cd Anagrams
         dotnet build --configuration Release --no-restore
     - name: Test
       run: | 
+        cd Anagrams
         dotnet test --no-restore --verbosity normal
         
