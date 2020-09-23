@@ -127,53 +127,25 @@ namespace Anagrams
         }
 
 
-    }
+    } // End of LightWordTree class
 
     /// <summary>
     /// Represents a Node in a LightWordTree.
     /// </summary>
-    public class LightNode
+    public class LightNode : Node, INode 
     {
 
         // Properties
         // TODO: change necessary properties to fields.
 
-        /// <summary>
-        /// A reference to the parent of this LightNode.
-        /// </summary>
-        public LightNode Parent { get; set; }
-        /// <summary>
-        /// Represents the character value of a LightNode.
-        /// </summary>
-        public char Value { get; set; }
-        /// <summary>
-        /// A list of the LightNode's children
-        /// </summary>
         public List<LightNode> Children { get; set; }
-        /// <summary>
-        /// True if this LightNode is the end of a word - necessary for searches to return proper output.
-        /// </summary>
-        public bool Accepting { get; set; }
 
-        /// <summary>
-        /// Constructs a LightNode with a specified Parent and Value.
-        /// </summary>
-        /// <param name="parent">The Parent LightNode of the new LightNode.</param>
-        /// <param name="letter">The Value of the new LightNode.</param>
-        public LightNode(LightNode parent, char letter)
+        public LightNode(LightNode parent, char letter) : base(parent,letter)
         {
-            Parent = parent;
-            Value = letter;
             Children = new List<LightNode>();
-            Accepting = false;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="letter"></param>
-        /// <returns></returns>
-        public LightNode AddChild(char letter)
+        public INode AddChild(char letter)
         {
             LightNode n = new LightNode(this, letter);
             Children.Add(n);
@@ -194,8 +166,7 @@ namespace Anagrams
             return null;
         }
 
-
-    }
+    } // End of LightNode class
 
 
 

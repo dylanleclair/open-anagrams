@@ -5,7 +5,10 @@ using System.Text;
 namespace Anagrams
 {
 
-
+    /// <summary>
+    /// Dictionary based implementation of a word tree. 
+    /// Featuring slightly faster lookups than a LightWordTree, this comes at the price of storage.
+    /// </summary>
     public class FastWordTree
     {
         FastNode root;
@@ -22,8 +25,6 @@ namespace Anagrams
 
             words = new List<string>(w);
             words.Sort();
-
-           
 
             PopulateTree(words);
             Console.WriteLine("Number of words loaded: " + words.Count);
@@ -94,44 +95,29 @@ namespace Anagrams
         }
 
 
-    }
+    } // end of FastWordTree class
 
 
 
 
-    public class FastNode
+    public class FastNode : Node, INode
     {
-
-
-        // Properties
-        public FastNode Parent { get; set; }
-        public char Value { get; set; }
 
         public Dictionary<char, FastNode> Children { get; set; }
 
-        public bool Accepting { get; set; }
-
-        public FastNode(FastNode parent, char letter)
+        public FastNode(FastNode parent,char letter) : base(parent,letter)
         {
-            Parent = parent;
-            Value = letter;
             Children = new Dictionary<char, FastNode>();
-            Accepting = false;
         }
 
-        public FastNode AddChild(char letter)
+        public INode AddChild(char letter)
         {
             FastNode n = new FastNode(this, letter);
             Children.Add(letter, n);
             return n;
         }
 
-
-
-    } // end of class
-
-
-
+    } // end of FastNode class
 
 
 }
