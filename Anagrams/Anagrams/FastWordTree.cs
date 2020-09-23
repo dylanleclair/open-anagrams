@@ -4,16 +4,19 @@ using System.Text;
 
 namespace Anagrams
 {
-    public class WordTree
+
+
+    public class FastWordTree
     {
-        Node root;
-        List<string> words;
+        FastNode root;
+        
 
 
-        public WordTree(string filename)
+        public FastWordTree(string filename)
         {
+            List<string> words;
 
-            root = new Node(null, '0');
+            root = new FastNode(null, '0');
 
             string[] w = System.IO.File.ReadAllLines(filename);
 
@@ -22,12 +25,12 @@ namespace Anagrams
 
            
 
-            EvilMasterMind();
+            PopulateTree(words);
             Console.WriteLine("Number of words loaded: " + words.Count);
 
         }
         
-        public void EvilMasterMind()
+        public void PopulateTree(List<string> words)
         {
             foreach (var word in words)
             {
@@ -40,7 +43,7 @@ namespace Anagrams
 
         public void AddWord(string word)
         {
-            Node n = root;
+            FastNode n = root;
 
             word = word.ToLower();
 
@@ -66,7 +69,7 @@ namespace Anagrams
         {
             Console.WriteLine($"Finding: {word}");
 
-            Node n = root;
+            FastNode n = root;
 
             for (int i = 0; i<word.Length; i++)
             {
@@ -93,6 +96,39 @@ namespace Anagrams
 
     }
 
+
+
+
+    public class FastNode
+    {
+
+
+        // Properties
+        public FastNode Parent { get; set; }
+        public char Value { get; set; }
+
+        public Dictionary<char, FastNode> Children { get; set; }
+
+        public bool Accepting { get; set; }
+
+        public FastNode(FastNode parent, char letter)
+        {
+            Parent = parent;
+            Value = letter;
+            Children = new Dictionary<char, FastNode>();
+            Accepting = false;
+        }
+
+        public FastNode AddChild(char letter)
+        {
+            FastNode n = new FastNode(this, letter);
+            Children.Add(letter, n);
+            return n;
+        }
+
+
+
+    } // end of class
 
 
 
