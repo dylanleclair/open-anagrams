@@ -46,23 +46,18 @@ namespace Anagrams
 
             for (int i = 0; i<word.Length; i++)
             {
-                if (n.HasChild(word[i])) {
-                    n = n.Letters[n.IndexOf(word[i])];
+
+                if (n.Children.ContainsKey(word[i]))
+                {
+                    n = n.Children[word[i]];
                 } else
                 {
-                    // create new node
-                    n = n.AddChild(word[i]);
-                    
+                    n.AddChild(word[i]);
                 }
 
             }
 
             n.Accepting = true;
-
-            for (int i = 0; i<word.Length; i++)
-            {
-                n = n.Parent;
-            }
 
         }
 
@@ -75,10 +70,10 @@ namespace Anagrams
 
             for (int i = 0; i<word.Length; i++)
             {
-                if (n.HasChild(word[i]))
+                if (n.Children.ContainsKey(word[i]))
                 {
                     // advance
-                    n = n.Letters[n.IndexOf(word[i])];
+                    n = n.Children[word[i]];
                 } else
                 {
                     return false;
@@ -92,8 +87,6 @@ namespace Anagrams
             {
                 return false;
             }
-
-            
 
         }
 
