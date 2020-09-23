@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+
 
 namespace Anagrams
 {
@@ -8,7 +8,6 @@ namespace Anagrams
     {
         void AddWord(string word);
         bool FindWord(string word);
-
 
     }
 
@@ -32,6 +31,8 @@ namespace Anagrams
             List<string> words;
             string[] w = System.IO.File.ReadAllLines(filename);
 
+            
+
             words = new List<string>(w);
             words.Sort();
 
@@ -43,7 +44,6 @@ namespace Anagrams
             Console.WriteLine($"Generated tree with {words.Count} words");
 
         }
-
 
         // Methods
 
