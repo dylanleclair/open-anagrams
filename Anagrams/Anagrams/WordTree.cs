@@ -20,10 +20,13 @@ namespace Anagrams
             words = new List<string>(w);
             words.Sort();
 
+           
+
             EvilMasterMind();
+            Console.WriteLine("Number of words loaded: " + words.Count);
 
         }
-
+        
         public void EvilMasterMind()
         {
             foreach (var word in words)
@@ -38,6 +41,8 @@ namespace Anagrams
         public void AddWord(string word)
         {
             Node n = root;
+
+            word = word.ToLower();
 
             for (int i = 0; i<word.Length; i++)
             {
@@ -56,12 +61,8 @@ namespace Anagrams
 
             for (int i = 0; i<word.Length; i++)
             {
-                Console.WriteLine(n.Value + " " +n.Accepting);
                 n = n.Parent;
             }
-
-
-            
 
         }
 
