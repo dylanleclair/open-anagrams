@@ -16,7 +16,7 @@ namespace Anagrams
         {
 
         }
-
+        
         public FastWordTree(FastNode root, string filename) :base(root,filename)
         {
         }
