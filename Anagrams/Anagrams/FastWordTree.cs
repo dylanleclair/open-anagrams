@@ -9,7 +9,7 @@ namespace Anagrams
     /// Dictionary based implementation of a word tree. 
     /// Featuring slightly faster lookups than a LightWordTree, this comes at the price of storage.
     /// </summary>
-    public class FastWordTree : Tree
+    public class FastWordTree : WordTree
     {
 
         public FastWordTree(string filename) : base(new FastNode(null,'0'),filename)

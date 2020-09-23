@@ -12,19 +12,19 @@ namespace Anagrams
 
     }
 
-    public abstract class Tree : IWordTree
+    public abstract class WordTree : IWordTree
     {
 
         public INode Root { get; set; }
 
         // Constructors
 
-        public Tree()
+        public WordTree()
         {
 
         }
 
-        public Tree(INode root, string filename)
+        public WordTree(INode root, string filename)
         {
 
             Root = root;

@@ -8,7 +8,7 @@ namespace Anagrams
     /// List based implementation of a word tree. A little lighter on storage, but comes with slightly slower lookups.
     /// Considering most words aren't terribly long, this is generally a better choice.
     /// </summary>
-    public class LightWordTree : Tree
+    public class LightWordTree : WordTree
     {
 
         public LightWordTree(string filename) : base(new LightNode(null,'0'),filename)
