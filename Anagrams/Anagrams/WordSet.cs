@@ -12,7 +12,7 @@ namespace Anagrams
         public List<string> words;
 
 
-        public WordSet GenerateWordSet(WordTree tree)
+        public WordSet GenerateWordSet(LightWordTree tree)
         {
             
 
