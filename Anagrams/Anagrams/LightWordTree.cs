@@ -63,8 +63,11 @@ namespace Anagrams
 
             for (int i = 0; i<word.Length; i++)
             {
-                if (n.HasChild(word[i])) {
-                    n = n.Children[n.IndexOf(word[i])];
+
+                LightNode check = n.GetChild(word[i]);
+
+                if (check != null) {
+                    n = check;
                 } else
                 {
                     // create new node
@@ -98,10 +101,13 @@ namespace Anagrams
 
             for (int i = 0; i<word.Length; i++)
             {
-                if (n.HasChild(word[i]))
+
+                LightNode check = n.GetChild(word[i]);
+
+                if (check != null)
                 {
                     // advance
-                    n = n.Children[n.IndexOf(word[i])];
+                    n = check;
                 } else
                 {
                     return false;
@@ -162,6 +168,11 @@ namespace Anagrams
             Accepting = false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="letter"></param>
+        /// <returns></returns>
         public LightNode AddChild(char letter)
         {
             LightNode n = new LightNode(this, letter);
@@ -169,30 +180,20 @@ namespace Anagrams
             return n;
         }
 
-
-        public bool HasChild(char letter)
+        /// <summary>
+        /// Retreives the desired Child of a LightNode, if it exists. Returns null otherwise.
+        /// </summary>
+        /// <param name="letter">The letter to check this LightNode's Children for.</param>
+        /// <returns>The Child LightNode with Value == letter, null otherwise.</returns>
+        public LightNode GetChild(char letter)
         {
             foreach (var item in Children)
             {
-                if (item.Value == letter) return true;
+                if (item.Value == letter) return item;
             }
-            return false;
+            return null;
         }
 
-        public int IndexOf(char letter)
-        {
-
-            for (int i = 0; i < Children.Count; i++)
-            {
-                if (letter == Children[i].Value)
-                {
-                    return i;
-                }
-            }
-
-
-            return -1;
-        }
 
     }
 
