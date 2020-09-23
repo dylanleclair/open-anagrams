@@ -22,15 +22,9 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Install dependencies
-      run: | 
-        cd Anagrams
-        dotnet restore
+      run: dotnet restore ./Anagrams/
     - name: Build
-      run: |
-        cd Anagrams
-        dotnet build --configuration Release --no-restore
+      run: dotnet build ./Anagrams/ --configuration Release --no-restore
     - name: Test
-      run: | 
-        cd Anagrams
-        dotnet test --no-restore --verbosity normal
+      run: dotnet test ./Anagrams/ --no-restore --verbosity normal
         
