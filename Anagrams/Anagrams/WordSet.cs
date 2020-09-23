@@ -19,7 +19,12 @@ namespace Anagrams
             throw new NotImplementedException();
         }
 
+        public WordSet GenerateWordSet(FastWordTree tree)
+        {
 
+
+            throw new NotImplementedException();
+        }
 
 
 
