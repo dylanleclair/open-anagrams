@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace Anagrams
 {
@@ -31,17 +31,50 @@ namespace Anagrams
             List<string> words;
             string[] w = System.IO.File.ReadAllLines(filename);
 
-            
+            string dir = "wordsbylength";
+
+
+            System.IO.Directory.CreateDirectory(dir);
+
 
             words = new List<string>(w);
             words.Sort();
 
+
+            Dictionary<int,List<string>> wordsbylength = new Dictionary<int, List<string>>();
+
+            Console.WriteLine(wordsbylength.Count);
             foreach (var word in words)
             {
-                AddWord(word);
+                string lower = word.ToLower();
+                Console.WriteLine(lower);
+                
+
+                if (lower.Length > 0)
+                {
+
+                    if (!wordsbylength.ContainsKey(lower.Length))
+                    {
+                        wordsbylength.Add(lower.Length,new List<string>());
+                    } else
+                    {
+                        wordsbylength[lower.Length].Add(lower);
+                    }
+                    AddWord(lower);
+
+                }
+
+
             }
 
-            Console.WriteLine($"Generated tree with {words.Count} words");
+            
+            foreach (KeyValuePair<int, List<string>> entry in wordsbylength)
+            {
+                // do something with entry.Value or entry.Key
+                System.IO.File.WriteAllLines(dir + "/word" + entry.Key + ".txt", entry.Value);
+                Console.WriteLine($"words of length {entry.Key} = {entry.Value.Count}");
+            }
+
 
         }
 
@@ -55,7 +88,10 @@ namespace Anagrams
 
             word = word.ToLower();
 
-            for (int i = 0; i<word.Length; i++)
+
+            int len = word.Length;
+
+            for (int i = 0; i< len ; i++)
             {
                 INode check = n.GetChild(word[i]);
 
@@ -67,6 +103,7 @@ namespace Anagrams
                     n = n.AddChild(word[i]);
                 }
             }
+
 
             n.Accepting = true;
 
@@ -100,7 +137,9 @@ namespace Anagrams
         }
 
 
-    }
+    } // END OF WORDTREE CLASS
+
+
 
 
     public interface INode
