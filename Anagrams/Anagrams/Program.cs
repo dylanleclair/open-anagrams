@@ -39,8 +39,6 @@ namespace Anagrams
                 input = input.Trim();
                 Console.WriteLine(ProcessGuess(input, tree.FindWord(input)));
 
-                tree.driver(input);
-
                 
 
             }

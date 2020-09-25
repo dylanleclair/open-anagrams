@@ -141,12 +141,12 @@ namespace Anagrams
         {
             List<string> output = new List<string>();
 
-            FindPermuationsHelper(Root, word.ToList<char>(), output);
+            FindPermutationsHelper(Root, word.ToList<char>(), output);
 
             return output;
         }
 
-        public void FindPermuationsHelper(INode node, List<char> characters, List<string> permutations)
+        public void FindPermutationsHelper(INode node, List<char> characters, List<string> permutations)
         {
 
             if (characters.Count > 0)
@@ -166,7 +166,7 @@ namespace Anagrams
                             permutations.Add(BubbleUp(check));
                         }
 
-                        FindPermuations(check, copyCharacters, permutations);
+                        FindPermutationsHelper(check, copyCharacters, permutations);
                     }
                     
                 }
