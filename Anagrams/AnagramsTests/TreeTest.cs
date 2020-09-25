@@ -13,6 +13,12 @@ namespace AnagramsTests
             
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+
+        }
+
         [Test]
         public void TestTrees()
         {
@@ -42,6 +48,8 @@ namespace AnagramsTests
 
 
         }
+
+        
 
     }
 }
