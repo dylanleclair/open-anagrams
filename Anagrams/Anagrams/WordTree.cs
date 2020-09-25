@@ -9,6 +9,7 @@ namespace Anagrams
         void AddWord(string word);
         bool FindWord(string word);
 
+        List<string> FindPermutations(string word);
     }
 
     public abstract class WordTree : IWordTree
@@ -43,11 +44,10 @@ namespace Anagrams
 
             Dictionary<int,List<string>> wordsbylength = new Dictionary<int, List<string>>();
 
-            Console.WriteLine(wordsbylength.Count);
             foreach (var word in words)
             {
                 string lower = word.ToLower();
-                Console.WriteLine(lower);
+               
                 
 
                 if (lower.Length > 0)
@@ -137,6 +137,73 @@ namespace Anagrams
         }
 
 
+        public List<string> FindPermutations (string word)
+        {
+            List<string> output = new List<string>();
+
+            FindPermuationsHelper(Root, word.ToList<char>(), output);
+
+            return output;
+        }
+
+        public void FindPermuationsHelper(INode node, List<char> characters, List<string> permutations)
+        {
+
+            if (characters.Count > 0)
+            {
+
+                foreach (var c in characters)
+                {
+                    INode check = node.GetChild(c);
+                    if (check != null)
+                    {
+                        List<char> copyCharacters = new List<char>(characters);
+                        copyCharacters.Remove(c);
+                        
+
+                        if (check.Accepting)
+                        {
+                            permutations.Add(BubbleUp(check));
+                        }
+
+                        FindPermuations(check, copyCharacters, permutations);
+                    }
+                    
+                }
+
+
+            } else
+            {
+
+                permutations.Add(BubbleUp(node));
+                
+            }
+
+
+
+
+        }
+
+
+
+        public string BubbleUp(INode node)
+        {
+            List<char> output = new List<char>();
+
+            INode n = node;
+
+            while (n.Parent != null)
+            {
+                output.Add(n.Value);
+                n = n.Parent;
+            }
+
+            output.Reverse();
+
+            return new string(output.ToArray());
+
+        }
+
     } // END OF WORDTREE CLASS
 
 
@@ -171,6 +238,10 @@ namespace Anagrams
             Value = letter;
             Accepting = false;
         }
+
+        
+
+
 
     }
 
