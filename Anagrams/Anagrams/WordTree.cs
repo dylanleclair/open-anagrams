@@ -10,6 +10,7 @@ namespace Anagrams
         bool FindWord(string word);
 
         List<string> FindPermutations(string word);
+        void GenerateWordSets(int minlength, int maxlength, int target);
     }
 
     public abstract class WordTree : IWordTree
@@ -80,7 +81,10 @@ namespace Anagrams
 
         // Methods
 
-
+        /// <summary>
+        /// Adds a word to a word tree. Will not modify word lists.
+        /// </summary>
+        /// <param name="word">The word to add to the tree.</param>
         public virtual void AddWord(string word)
         {
 
@@ -109,9 +113,14 @@ namespace Anagrams
 
         }
 
+        /// <summary>
+        /// Finds a word in the WordTree.
+        /// </summary>
+        /// <param name="word">The word to search for.</param>
+        /// <returns></returns>
         public virtual bool FindWord(string word)
         {
-            Console.WriteLine($"Finding: {word}\n");
+            //Console.WriteLine($"Finding: {word}\n");
 
             INode n = Root;
 
@@ -129,6 +138,7 @@ namespace Anagrams
 
             if (n.Accepting)
             {
+                BubbleUp(n);
                 return true;
             } else
             {
@@ -146,7 +156,7 @@ namespace Anagrams
             return output;
         }
 
-        public void FindPermutationsHelper(INode node, List<char> characters, List<string> permutations)
+        private void FindPermutationsHelper(INode node, List<char> characters, List<string> permutations)
         {
 
             if (characters.Count > 0)
@@ -163,7 +173,13 @@ namespace Anagrams
 
                         if (check.Accepting)
                         {
-                            permutations.Add(BubbleUp(check));
+                            string word = BubbleUp(check);
+                            if (word.Length >= 2 && !permutations.Contains(word))
+                            {
+                                permutations.Add(word);
+                            }
+
+                            
                         }
 
                         FindPermutationsHelper(check, copyCharacters, permutations);
@@ -175,7 +191,9 @@ namespace Anagrams
             } else
             {
 
-                permutations.Add(BubbleUp(node));
+                string word = BubbleUp(node);
+                if (!permutations.Contains(word) && node.Accepting)
+                    permutations.Add(word);
                 
             }
 
@@ -184,10 +202,63 @@ namespace Anagrams
 
         }
 
-
-
-        public string BubbleUp(INode node)
+        /// <summary>
+        /// Assumes a non-zero input on all inputs. Generates wordsets with to new "wordsets" directory. 
+        /// </summary>
+        /// <param name="minlength">The desired min length of words in the generated wordsets</param>
+        /// <param name="maxlength">The desired max length of words in the generated wordsets</param>
+        /// <param name="target">The minimum number of words required to create a wordset</param>
+        public void GenerateWordSets(int minlength, int maxlength, int target)
         {
+
+            if (minlength > maxlength || minlength < 0 || maxlength < 0 || target < 0)
+            {
+                throw new NotSupportedException("Invalid parameters.");
+            }
+
+            string inputdir = $"wordsbylength/word{maxlength}.txt";
+            
+            string[] words = System.IO.File.ReadAllLines(inputdir);
+            System.IO.Directory.CreateDirectory("wordsets");
+            foreach (string word in words)
+            {
+                List<string> perms = FindPermutations(word);
+                List<string> output = new List<string>();
+
+                foreach (string w in perms)
+                {
+                    // want to exclude single letters
+                    if (!(w.Length < Math.Max(1,minlength)))
+                    {
+                        output.Add(w);
+                    }
+                    
+                }
+
+
+
+                if (output.Count >= target)
+                {
+                    string outputdir = $"wordsets/{word}.txt";
+                    System.IO.File.WriteAllLines(outputdir, output);
+
+                }
+
+            }
+
+        }
+
+
+        /// <summary>
+        /// "Bubbles up" to the top of the word tree, building the string represented from root-to-input node. 
+        /// 
+        /// The input node will be last letter in outputted word.
+        /// </summary>
+        /// <param name="node">The input node .</param>
+        /// <returns></returns>
+        private string BubbleUp(INode node)
+        {
+
             List<char> output = new List<char>();
 
             INode n = node;
@@ -196,6 +267,7 @@ namespace Anagrams
             {
                 output.Add(n.Value);
                 n = n.Parent;
+
             }
 
             output.Reverse();

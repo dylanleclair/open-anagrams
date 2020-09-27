@@ -20,6 +20,8 @@ namespace Anagrams
         public FastWordTree(FastNode root, string filename) :base(root,filename)
         {
         }
+
+
     } // end of FastWordTree class
 
 
