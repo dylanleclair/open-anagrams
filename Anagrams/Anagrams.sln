@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Anagrams", "Anagrams\Anagrams.csproj", "{9DA5CC27-312C-440C-A896-0BDDAC0AE1A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnagramsTests", "AnagramsTests\AnagramsTests.csproj", "{D5A2192F-0F98-48B6-BBED-EEF4890186FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnagramsTests", "AnagramsTests\AnagramsTests.csproj", "{D5A2192F-0F98-48B6-BBED-EEF4890186FB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossPlatformCLI", "CrossPlatformCLI\CrossPlatformCLI.csproj", "{9C24EC66-544D-48F6-A84A-800330D371C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D5A2192F-0F98-48B6-BBED-EEF4890186FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5A2192F-0F98-48B6-BBED-EEF4890186FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5A2192F-0F98-48B6-BBED-EEF4890186FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C24EC66-544D-48F6-A84A-800330D371C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C24EC66-544D-48F6-A84A-800330D371C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C24EC66-544D-48F6-A84A-800330D371C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C24EC66-544D-48F6-A84A-800330D371C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

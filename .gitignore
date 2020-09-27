@@ -340,3 +340,4 @@ ASALocalRun/
 healthchecksdb
 Anagrams/Anagrams/.DS_Store
 Anagrams/.DS_Store
+*.txt
