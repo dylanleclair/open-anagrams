@@ -8,15 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="word-lists\words.txt">
+    <None Remove="word-lists.zip" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="word-lists.zip">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="word-lists\shortwords.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="powershell -command Expand-Archive -Force word-lists.zip" />
+  </Target>
 
 </Project>
