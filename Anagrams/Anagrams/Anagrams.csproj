@@ -13,4 +13,10 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="word-lists\shortwords.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
