@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="powershell -command &quot;Expand-Archive -Force word-lists.zip" />
+    <Exec Command="powershell -command Expand-Archive -Force word-lists.zip" />
   </Target>
 
 </Project>
