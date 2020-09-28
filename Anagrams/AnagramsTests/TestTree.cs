@@ -18,7 +18,7 @@ namespace AnagramsTests
         [Test]
         public void TestTrees()
         {
-            string directory = "word-lists/words.txt";
+            string directory = "word-lists/words.words";
 
             List<string> w = new List<string>();
 
