@@ -6,11 +6,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Anagrams\Anagrams.csproj" />
+    <None Remove="word-lists\shortwords.txt" />
+    <None Remove="word-lists\words.txt" />
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="XCOPY &quot;$(SolutionDir)\CrossPlatformCLI\wordsets&quot; &quot;$(TargetDir)\wordsets&quot; /s /i /y /d&#xD;&#xA;" />
-  </Target>
+  <ItemGroup>
+    <Content Include="word-lists\shortwords.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="word-lists\words.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Anagrams\Anagrams.csproj" />
+  </ItemGroup>
 
 </Project>

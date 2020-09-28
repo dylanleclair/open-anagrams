@@ -12,6 +12,7 @@ namespace CrossPlatformCLI
     {
 
         public const string WORDSET_DIRECTORY = "wordsets";
+        public const string DICTIONARY_DIRECTORY = "word-lists/words.txt";
 
         static int Score { get; set; }
 
@@ -24,6 +25,10 @@ namespace CrossPlatformCLI
                 PlayAnagrams();
             } else
             {
+
+                LightWordTree light = new LightWordTree(DICTIONARY_DIRECTORY);
+                light.GenerateWordSets(3, 6, 80);
+
                 throw new Exception("No wordset files provided.");
             }
 
