@@ -6,21 +6,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="word-lists\shortwords.words" />
-    <None Remove="word-lists\words.words" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="word-lists\shortwords.words">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="word-lists\words.words">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Anagrams\Anagrams.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="word-lists.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="powershell -command &quot;Expand-Archive -Force word-lists.zip" />
+  </Target>
 
 </Project>
