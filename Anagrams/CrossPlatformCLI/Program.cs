@@ -12,7 +12,7 @@ namespace CrossPlatformCLI
     {
 
         public const string WORDSET_DIRECTORY = "wordsets";
-        public const string DICTIONARY_DIRECTORY = "word-lists/words.txt";
+        public const string DICTIONARY_DIRECTORY = "word-lists/words.words";
 
         static int Score { get; set; }
 
