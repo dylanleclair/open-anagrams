@@ -6,15 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="word-lists\shortwords.txt" />
-    <None Remove="word-lists\words.txt" />
+    <None Remove="word-lists\shortwords.words" />
+    <None Remove="word-lists\words.words" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="word-lists\shortwords.txt">
+    <Content Include="word-lists\shortwords.words">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="word-lists\words.txt">
+    <Content Include="word-lists\words.words">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
