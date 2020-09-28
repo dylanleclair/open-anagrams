@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="XCOPY &quot;$(SolutionDir)/CrossPlatformCLI/wordsets&quot; &quot;$(TargetDir)/wordsets&quot; /s /i /y /d&#xD;&#xA;" />
+    <Exec Command="XCOPY &quot;$(SolutionDir)\CrossPlatformCLI\wordsets&quot; &quot;$(TargetDir)\wordsets&quot; /s /i /y /d&#xD;&#xA;" />
   </Target>
 
 </Project>
