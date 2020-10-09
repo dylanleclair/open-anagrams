@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnagramsTests", "AnagramsTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossPlatformCLI", "CrossPlatformCLI\CrossPlatformCLI.csproj", "{9C24EC66-544D-48F6-A84A-800330D371C1}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordGames", "WordGames\WordGames.csproj", "{B7AD95E2-3273-4FC7-BD91-89913DAA354A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nez", "Nez.Portable\Nez.csproj", "{678131AF-186B-443C-A858-74940C49400D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{9C24EC66-544D-48F6-A84A-800330D371C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C24EC66-544D-48F6-A84A-800330D371C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C24EC66-544D-48F6-A84A-800330D371C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7AD95E2-3273-4FC7-BD91-89913DAA354A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7AD95E2-3273-4FC7-BD91-89913DAA354A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7AD95E2-3273-4FC7-BD91-89913DAA354A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7AD95E2-3273-4FC7-BD91-89913DAA354A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{678131AF-186B-443C-A858-74940C49400D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{678131AF-186B-443C-A858-74940C49400D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{678131AF-186B-443C-A858-74940C49400D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{678131AF-186B-443C-A858-74940C49400D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

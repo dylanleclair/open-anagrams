@@ -20,6 +20,9 @@ namespace CrossPlatformCLI
         {
 
 
+            
+
+
             if (System.IO.Directory.Exists(WORDSET_DIRECTORY))
             {
                 PlayAnagrams();
@@ -27,6 +30,14 @@ namespace CrossPlatformCLI
             {
 
                 LightWordTree light = new LightWordTree(DICTIONARY_DIRECTORY);
+
+                List<string> s = light.FindPermutations("lagoon");
+
+                foreach (var item in s)
+                {
+                    Console.WriteLine(item);
+                }
+
                 light.GenerateWordSets(3, 6, 80);
 
                 throw new Exception("No wordset files provided.");
