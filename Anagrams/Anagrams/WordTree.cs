@@ -13,6 +13,30 @@ namespace Anagrams
         void GenerateWordSets(int minlength, int maxlength, int target);
     }
 
+    public readonly struct Parameters
+    {
+        public readonly int minlength;
+        public readonly int maxlength;
+        public readonly int target;
+    
+        public Parameters (int minlength, int maxlength, int target)
+        {
+            this.minlength = minlength;
+            this.maxlength = maxlength;
+            this.target = target;
+
+        }
+
+        public bool Passes(string word)
+        {
+            int len = word.Length;
+            if (len >= minlength && len <= maxlength)
+                return true;
+            else return false;
+        }
+
+    }
+
     public abstract class WordTree : IWordTree
     {
 
@@ -23,6 +47,14 @@ namespace Anagrams
         public WordTree()
         {
 
+        }
+
+        public WordTree(string[] words)
+        {
+            foreach (var word in words)
+            {
+                this.AddWord(word);
+            }
         }
 
         public WordTree(INode root, string filename)
@@ -155,6 +187,56 @@ namespace Anagrams
 
             return output;
         }
+
+        public static List<string> generateAnagramsWordset(String filename, Parameters parameters)
+        {
+            string[] words = System.IO.File.ReadAllLines(filename);
+
+            List<String> maxLengthWords = new List<string>();
+            LightWordTree light = new LightWordTree();
+
+            foreach (var word in words)
+            {
+                light.AddWord(word);
+                if (word.Length == parameters.maxlength)
+                {
+                    maxLengthWords.Add(word);
+                }
+            }
+
+            List<String> wordlist = new List<string>();
+
+            Random r = new Random();
+            int index = r.Next(0, maxLengthWords.Count);
+            string rootword = maxLengthWords[index];
+            wordlist.Add(rootword);
+
+            List<string> output;
+            do
+            {
+                output = FilterPermutations(light.FindPermutations(rootword), parameters);
+            } while (output.Count >= parameters.target);
+
+            return output;
+
+        }
+
+        public static List<string> FilterPermutations(List<string> words, Parameters parameters)
+        {
+            List<string> output = new List<string>();
+
+            foreach (var word in words)
+            {
+                if (parameters.Passes(word))
+                {
+                    output.Add(word);
+                }
+            }
+
+            return output;
+
+        }
+
 
         private void FindPermutationsHelper(INode node, List<char> characters, List<string> permutations)
         {

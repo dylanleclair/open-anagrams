@@ -1,11 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net471</TargetFramework>
 
     <IsPackable>false</IsPackable>
 
     <RunPostBuildEvent>Always</RunPostBuildEvent>
+
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

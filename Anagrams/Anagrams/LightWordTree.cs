@@ -10,7 +10,10 @@ namespace Anagrams
     /// </summary>
     public class LightWordTree : WordTree
     {
-
+        public LightWordTree() : base()
+        {
+            Root = new FastNode(null, '0');
+        }
         public LightWordTree(string filename) : base(new LightNode(null,'0'),filename)
         {
 

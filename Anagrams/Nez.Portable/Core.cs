@@ -11,7 +11,7 @@ using Nez.BitmapFonts;
 using Nez.Analysis;
 using Nez.Textures;
 using System.Diagnostics;
-
+using System.Runtime.InteropServices;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Nez.ImGui")]
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Nez.Persistence")]
@@ -141,15 +141,20 @@ namespace Nez
 			_instance = this;
 			Emitter = new Emitter<CoreEvents>(new CoreEventsComparer());
 
+
+			var runtimeFramework = RuntimeInformation.FrameworkDescription;
 			var graphicsManager = new GraphicsDeviceManager(this)
 			{
+				
 				PreferredBackBufferWidth = width,
 				PreferredBackBufferHeight = height,
 				IsFullScreen = isFullScreen,
-				SynchronizeWithVerticalRetrace = true
+				SynchronizeWithVerticalRetrace = true,
+				//PreferHalfPixelOffset = runtimeFramework.Contains(".NET Core") // on .NET Core, this needs to be set to prevent artifacting	
 			};
 			graphicsManager.DeviceReset += OnGraphicsDeviceReset;
 			graphicsManager.PreferredDepthStencilFormat = DepthFormat.Depth24Stencil8;
+
 
 			Screen.Initialize(graphicsManager);
 			Window.ClientSizeChanged += OnGraphicsDeviceReset;

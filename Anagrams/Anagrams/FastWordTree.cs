@@ -11,7 +11,10 @@ namespace Anagrams
     /// </summary>
     public class FastWordTree : WordTree
     {
-
+        public FastWordTree() :base()
+        {
+            Root = new FastNode(null, '0');
+        }
         public FastWordTree(string filename) : base(new FastNode(null,'0'),filename)
         {
 
